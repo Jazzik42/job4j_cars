@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "photo")
@@ -27,4 +28,11 @@ public class Photo {
     @ManyToOne
     @JoinColumn(name = "car_id", nullable = false)
     private Car car;
+
+    public static Photo of(String path, Car car) {
+        Photo photo = new Photo();
+        photo.setPath(path);
+        photo.setCar(car);
+        return photo;
+    }
 }

@@ -23,4 +23,10 @@ public class Mark {
     private int id;
 
     private String name;
+
+    public static Mark of(String name) {
+        Mark mark = new Mark();
+        mark.setName(name);
+        return mark;
+    }
 }

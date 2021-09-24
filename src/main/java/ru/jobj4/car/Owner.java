@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,4 +32,17 @@ public class Owner {
             inverseJoinColumns = {
                     @JoinColumn(name = "car_id", nullable = false, updatable = false)})
     private List<Car> cars;
+
+    public void addCar(Car car) {
+        if (cars == null) {
+            cars = new ArrayList();
+        }
+        cars.add(car);
+    }
+
+    public static Owner of(String name) {
+        Owner owner = new Owner();
+        owner.setName(name);
+        return owner;
+    }
 }

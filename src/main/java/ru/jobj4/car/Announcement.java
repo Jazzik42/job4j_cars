@@ -9,9 +9,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "announcement")
-@AllArgsConstructor(
-        staticName = "of"
-)
 @NoArgsConstructor
 @Getter
 @Setter
@@ -34,4 +31,13 @@ public class Announcement {
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private Owner owner;
+
+    public static Announcement of(String description, User user, Car car, Owner owner) {
+    Announcement announcement = new Announcement();
+    announcement.setCar(car);
+    announcement.setDescription(description);
+    announcement.setOwner(owner);
+    announcement.setUser(user);
+    return announcement;
+    }
 }

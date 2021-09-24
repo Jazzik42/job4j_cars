@@ -3,6 +3,7 @@ package ru.jobj4.car;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,4 +32,19 @@ public class User {
     @OneToMany()
     @JoinColumn(name = "user_id")
     private List<Car> cars;
+
+    public void addCar(Car car) {
+        if (cars == null) {
+            cars = new ArrayList();
+        }
+        cars.add(car);
+    }
+
+    public static User of(String name, String email, String password) {
+        User user = new User();
+        user.setName(name);
+        user.setEmail(email);
+        user.setPassword(password);
+        return user;
+    }
 }

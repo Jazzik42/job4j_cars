@@ -4,13 +4,11 @@ import lombok.*;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "car")
-@AllArgsConstructor(
-        staticName = "of"
-)
 @NoArgsConstructor
 @Getter
 @Setter
@@ -40,4 +38,25 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "mark_id")
     private Mark mark;
+
+    public void addOwner(Owner owner) {
+        if (owners == null) {
+            owners = new ArrayList();
+        }
+        owners.add(owner);
+    }
+
+    public void addPhoto(Photo ph) {
+        if (photo == null) {
+            photo = new ArrayList();
+        }
+        photo.add(ph);
+    }
+
+    public static Car of(Body body, Mark mark) {
+        Car car = new Car();
+        car.setBody(body);
+        car.setMark(mark);
+        return car;
+    }
 }

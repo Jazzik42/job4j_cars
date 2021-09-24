@@ -10,9 +10,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "body")
 @NoArgsConstructor
-@AllArgsConstructor(
-        staticName = "of"
-)
 @Getter
 @Setter
 public class Body {
@@ -22,4 +19,10 @@ public class Body {
     private int id;
 
     private String name;
+
+    public static Body of(String name) {
+        Body body = new Body();
+        body.setName(name);
+        return body;
+    }
 }
